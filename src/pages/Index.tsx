@@ -8,11 +8,12 @@ import { InfoSection } from '@/components/InfoSection';
 
 const Index = () => {
   const [displayCount, setDisplayCount] = useState<3 | 6>(6);
+  const [offsetDays, setOffsetDays] = useState<-1 | 0 | 1>(0);
   const timezone = getAutoDetectedTimezone();
 
   const whiteDays = useMemo(() => {
-    return getUpcomingWhiteDays(displayCount, timezone);
-  }, [displayCount, timezone]);
+    return getUpcomingWhiteDays(displayCount, timezone, offsetDays);
+  }, [displayCount, timezone, offsetDays]);
 
   return (
     <div className="min-h-screen bg-background starry-bg">
@@ -21,7 +22,7 @@ const Index = () => {
 
         {/* Export Button */}
         <div className="flex justify-center mb-6 animate-slide-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-          <ExportPanel whiteDays={whiteDays} />
+          <ExportPanel whiteDays={whiteDays} offsetDays={offsetDays} />
         </div>
         
         {/* White Days List */}

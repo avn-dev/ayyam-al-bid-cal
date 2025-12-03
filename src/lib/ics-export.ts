@@ -25,7 +25,7 @@ DTSTAMP:${timestamp}
 DTSTART;VALUE=DATE:${dateStr}
 DTEND;VALUE=DATE:${nextDateStr}
 SUMMARY:Weißer Tag - ${day.hijriDate.day}. Tag
-DESCRIPTION:${day.hijriLabel}\\n\\nAyyam al-Bid (weiße Tage) - empfohlen zu fasten.
+DESCRIPTION:${day.hijriLabel}\\n\\nAyyam al-Bid (weiße Tage) - empfohlen zu fasten.${adjustmentNote}
 CATEGORIES:Islamischer Kalender,Weiße Tage
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
