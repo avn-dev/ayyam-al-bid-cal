@@ -158,7 +158,11 @@ export function getWhiteDaysForMonth(hYear: number, hMonth: number): Date[] {
 }
 
 // Get upcoming white days from today
-export function getUpcomingWhiteDays(count: number = 12, timezone?: string): WhiteDay[] {
+export function getUpcomingWhiteDays(
+  count: number = 12,
+  timezone?: string,
+  offsetDays: -1 | 0 | 1 = 0
+): WhiteDay[] {
   const whiteDays: WhiteDay[] = [];
   const today = new Date();
   const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -180,22 +184,30 @@ export function getUpcomingWhiteDays(count: number = 12, timezone?: string): Whi
   
   while (whiteDays.length < count) {
     const monthWhiteDays = getWhiteDaysForMonth(hYear, hMonth);
-    
+
     for (const date of monthWhiteDays) {
-      const isAfterOrToday = date >= todayStart;
+      const adjustedDate = new Date(date);
+      adjustedDate.setDate(adjustedDate.getDate() + offsetDays);
+
+      const isAfterOrToday = adjustedDate >= todayStart;
 
       if (isAfterOrToday && whiteDays.length < count) {
-        const hijri = gregorianToHijri(date.getFullYear(), date.getMonth() + 1, date.getDate());
+        const hijri = gregorianToHijri(
+          adjustedDate.getFullYear(),
+          adjustedDate.getMonth() + 1,
+          adjustedDate.getDate()
+        );
 
         whiteDays.push({
-          gregorianDate: date,
+          gregorianDate: adjustedDate,
           hijriDate: hijri,
-          weekday: getWeekdayName(date),
+          weekday: getWeekdayName(adjustedDate),
           hijriLabel: formatHijriDate(hijri),
-          gregorianLabel: formatGregorianDate(date),
+          gregorianLabel: formatGregorianDate(adjustedDate),
           timezoneId: timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
-          isToday: date.toDateString() === todayStart.toDateString(),
-          isRamadan: hijri.month === 9
+          isToday: adjustedDate.toDateString() === todayStart.toDateString(),
+          isRamadan: hijri.month === 9,
+          offsetDays
         });
       }
     }
@@ -206,7 +218,9 @@ export function getUpcomingWhiteDays(count: number = 12, timezone?: string): Whi
       hYear++;
     }
   }
-  
+
+  whiteDays.sort((a, b) => a.gregorianDate.getTime() - b.gregorianDate.getTime());
+
   return whiteDays;
 }
 
@@ -219,4 +233,5 @@ export interface WhiteDay {
   timezoneId: string;
   isToday: boolean;
   isRamadan: boolean;
+  offsetDays: -1 | 0 | 1;
 }

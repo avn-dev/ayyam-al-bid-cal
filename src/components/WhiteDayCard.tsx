@@ -30,6 +30,11 @@ export function WhiteDayCard({ day, index, isNext = false }: WhiteDayCardProps) 
             Ramadan
           </span>
         )}
+        {day.offsetDays !== 0 && (
+          <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-100">
+            {day.offsetDays > 0 ? '+1 Tag' : '-1 Tag'} lokale Anpassung
+          </span>
+        )}
       </div>
       
       <div className="flex items-center justify-between gap-3">
@@ -63,6 +68,14 @@ export function WhiteDayCard({ day, index, isNext = false }: WhiteDayCardProps) 
               Während des Ramadan wird ohnehin durchgehend gefastet. Die weißen Tage gelten daher nicht als zusätzliches Sunnah-Fasten.
             </p>
           )}
+        </div>
+      )}
+
+      {day.offsetDays !== 0 && (
+        <div className="mt-3 text-xs text-muted-foreground">
+          <p className="leading-relaxed">
+            Hinweis: Diese Termine sind um {day.offsetDays > 0 ? '+1' : '-1'} Tag verschoben, damit sie sicher mit der lokalen Mondsichtung übereinstimmen.
+          </p>
         </div>
       )}
     </div>

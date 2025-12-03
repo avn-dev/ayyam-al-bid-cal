@@ -8,20 +8,21 @@ import { InfoSection } from '@/components/InfoSection';
 
 const Index = () => {
   const [displayCount, setDisplayCount] = useState<3 | 6>(6);
+  const [offsetDays, setOffsetDays] = useState<-1 | 0 | 1>(0);
   const timezone = getAutoDetectedTimezone();
 
   const whiteDays = useMemo(() => {
-    return getUpcomingWhiteDays(displayCount, timezone);
-  }, [displayCount, timezone]);
+    return getUpcomingWhiteDays(displayCount, timezone, offsetDays);
+  }, [displayCount, timezone, offsetDays]);
 
   return (
     <div className="min-h-screen bg-background starry-bg">
       <div className="container max-w-xl py-6 px-4 relative z-10">
         <Header />
-        
+
         {/* Export Button */}
         <div className="flex justify-center mb-6 animate-slide-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-          <ExportPanel whiteDays={whiteDays} />
+          <ExportPanel whiteDays={whiteDays} offsetDays={offsetDays} />
         </div>
         
         {/* White Days List */}
@@ -33,23 +34,52 @@ const Index = () => {
                 ({whiteDays.length})
               </span>
             </h2>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>Anzahl:</span>
-              <div className="flex rounded-lg overflow-hidden border border-border/60">
-                {[3, 6].map((count) => (
-                  <button
-                    key={count}
-                    onClick={() => setDisplayCount(count as 3 | 6)}
-                    className={`px-3 py-1 font-medium transition-colors ${
-                      displayCount === count
-                        ? 'bg-primary/15 text-primary'
-                        : 'bg-muted/30 hover:bg-muted/60'
-                    }`}
-                  >
-                    {count}
-                  </button>
-                ))}
+            <div className="flex flex-col items-end gap-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span>Anzahl:</span>
+                <div className="flex rounded-lg overflow-hidden border border-border/60">
+                  {[3, 6].map((count) => (
+                    <button
+                      key={count}
+                      onClick={() => setDisplayCount(count as 3 | 6)}
+                      className={`px-3 py-1 font-medium transition-colors ${
+                        displayCount === count
+                          ? 'bg-primary/15 text-primary'
+                          : 'bg-muted/30 hover:bg-muted/60'
+                      }`}
+                    >
+                      {count}
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              <div className="flex items-center gap-2">
+                <span>Lokale Anpassung:</span>
+                <div className="flex rounded-lg overflow-hidden border border-border/60">
+                  {[
+                    { label: '-1 Tag', value: -1 as -1 | 0 | 1 },
+                    { label: 'Standard', value: 0 as -1 | 0 | 1 },
+                    { label: '+1 Tag', value: 1 as -1 | 0 | 1 }
+                  ].map(({ label, value }) => (
+                    <button
+                      key={label}
+                      onClick={() => setOffsetDays(value)}
+                      className={`px-3 py-1 font-medium transition-colors ${
+                        offsetDays === value
+                          ? 'bg-primary/15 text-primary'
+                          : 'bg-muted/30 hover:bg-muted/60'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <p className="text-[11px] text-right text-muted-foreground max-w-sm">
+                Falls der lokale Hijri-Monat einen Tag früher oder später beginnt, kannst du die weißen Tage hier um
+                ±1 Tag verschieben, damit sie sicher mit der Mondsichtung übereinstimmen.
+              </p>
             </div>
           </div>
 

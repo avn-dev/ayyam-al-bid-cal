@@ -13,12 +13,18 @@ import {
 
 interface ExportPanelProps {
   whiteDays: WhiteDay[];
+  offsetDays?: -1 | 0 | 1;
 }
 
-export function ExportPanel({ whiteDays }: ExportPanelProps) {
+function getAdjustmentLabel(offsetDays: -1 | 0 | 1 = 0): string {
+  if (offsetDays === 0) return 'Standard';
+  return offsetDays > 0 ? '+1 Tag (lokale Verschiebung)' : '-1 Tag (lokale Verschiebung)';
+}
+
+export function ExportPanel({ whiteDays, offsetDays = 0 }: ExportPanelProps) {
   const handleExportYear = () => {
     const timezone = whiteDays[0]?.timezoneId;
-    const fullYearWhiteDays = getUpcomingWhiteDays(36, timezone);
+    const fullYearWhiteDays = getUpcomingWhiteDays(36, timezone, offsetDays);
 
     downloadICS(fullYearWhiteDays, 'weisse-tage-jahresexport.ics');
   };
@@ -47,16 +53,17 @@ export function ExportPanel({ whiteDays }: ExportPanelProps) {
         <div className="grid gap-4 py-4">
           {/* ICS Downloads */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              ICS-Datei herunterladen
-            </h4>
-            <p className="text-xs text-muted-foreground">
-              Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)
-            </p>
-            <div className="flex gap-2">
-              <Button 
-                variant="outline" 
+          <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            ICS-Datei herunterladen
+          </h4>
+          <div className="space-y-1 text-xs text-muted-foreground">
+            <p>Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)</p>
+            <p className="text-[11px]">Aktuelle Einstellung: {getAdjustmentLabel(offsetDays)}</p>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
                 size="sm" 
                 onClick={handleExportYear}
                 className="flex-1 gap-2"
