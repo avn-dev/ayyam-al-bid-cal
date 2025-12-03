@@ -1,7 +1,7 @@
 import { WhiteDay, getUpcomingWhiteDays } from '@/lib/hijri';
-import { downloadICS, getGoogleCalendarUrl } from '@/lib/ics-export';
+import { downloadICS } from '@/lib/ics-export';
 import { Button } from '@/components/ui/button';
-import { Download, Calendar, Smartphone, Monitor } from 'lucide-react';
+import { Download, Calendar } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -50,38 +50,38 @@ export function ExportPanel({ whiteDays, offsetDays = 0 }: ExportPanelProps) {
           </DialogDescription>
         </DialogHeader>
         
-        <div className="grid gap-4 py-4">
-          {/* ICS Downloads */}
-          <div className="space-y-3">
-          <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            ICS-Datei herunterladen
-          </h4>
-          <div className="space-y-1 text-xs text-muted-foreground">
-            <p>Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)</p>
-            <p className="text-[11px]">Aktuelle Einstellung: {getAdjustmentLabel(offsetDays)}</p>
-          </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-                size="sm" 
-                onClick={handleExportYear}
-                className="flex-1 gap-2"
-              >
-                <Calendar className="w-4 h-4" />
-                Komplettes Jahr
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={handleExportNext}
-                className="flex-1 gap-2"
-              >
-                <Calendar className="w-4 h-4" />
-                Nächste 3 Tage
-              </Button>
+          <div className="grid gap-4 py-4">
+            {/* ICS Downloads */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                ICS-Datei herunterladen
+              </h4>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <p>Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)</p>
+                <p className="text-[11px]">Aktuelle Einstellung: {getAdjustmentLabel(offsetDays)}</p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportYear}
+                  className="flex-1 gap-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Komplettes Jahr
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportNext}
+                  className="flex-1 gap-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Nächste 3 Tage
+                </Button>
+              </div>
             </div>
-          </div>
 
           <div className="h-px bg-border" />
 
