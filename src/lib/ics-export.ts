@@ -19,6 +19,7 @@ X-WR-TIMEZONE:UTC
     const nextDay = new Date(day.gregorianDate);
     nextDay.setDate(nextDay.getDate() + 1);
     const nextDateStr = formatDateOnlyToICS(nextDay);
+    const adjustmentNote = getAdjustmentNote(day.offsetDays);
     ics += `BEGIN:VEVENT
 UID:whitday-${dateStr}-${index}@weissetage.app
 DTSTAMP:${timestamp}
@@ -49,6 +50,13 @@ function formatDateOnlyToICS(date: Date): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}${month}${day}`;
+}
+
+function getAdjustmentNote(offsetDays: -1 | 0 | 1): string {
+  if (offsetDays === 0) return '';
+
+  const label = offsetDays > 0 ? '+1 Tag (lokale Verschiebung)' : '-1 Tag (lokale Verschiebung)';
+  return `\\n\\nAktuelle Einstellung: ${label}`;
 }
 
 // Download ICS file
