@@ -76,7 +76,7 @@ export function ExportPanel({ whiteDays }: ExportPanelProps) {
           <div className="h-px bg-border" />
 
           {/* Quick Links */}
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Smartphone className="w-4 h-4" />
               Direkt-Links
@@ -100,9 +100,9 @@ export function ExportPanel({ whiteDays }: ExportPanelProps) {
                 Outlook
               </Button>
             </div>
-          </div>
+          </div> */}
 
-          <div className="h-px bg-border" />
+          {/* <div className="h-px bg-border" /> */}
 
           {/* Instructions */}
           <div className="rounded-lg bg-muted/50 p-4">
