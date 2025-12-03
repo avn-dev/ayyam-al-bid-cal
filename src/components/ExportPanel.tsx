@@ -1,4 +1,4 @@
-import { WhiteDay } from '@/lib/hijri';
+import { WhiteDay, getUpcomingWhiteDays } from '@/lib/hijri';
 import { downloadICS, getGoogleCalendarUrl } from '@/lib/ics-export';
 import { Button } from '@/components/ui/button';
 import { Download, Calendar, Smartphone, Monitor } from 'lucide-react';
@@ -17,7 +17,10 @@ interface ExportPanelProps {
 
 export function ExportPanel({ whiteDays }: ExportPanelProps) {
   const handleExportYear = () => {
-    downloadICS(whiteDays, 'weisse-tage-jahresexport.ics');
+    const timezone = whiteDays[0]?.timezoneId;
+    const fullYearWhiteDays = getUpcomingWhiteDays(36, timezone);
+
+    downloadICS(fullYearWhiteDays, 'weisse-tage-jahresexport.ics');
   };
 
   const handleExportNext = () => {
