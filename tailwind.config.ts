@@ -61,21 +61,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom Islamic theme colors
-        emerald: {
-          DEFAULT: "hsl(var(--emerald))",
-          light: "hsl(var(--emerald-light))",
-          dark: "hsl(var(--emerald-dark))",
+        // Custom Night Sky theme colors
+        night: {
+          DEFAULT: "hsl(var(--night-deep))",
+          mid: "hsl(var(--night-mid))",
+          light: "hsl(var(--night-light))",
         },
-        sand: {
-          DEFAULT: "hsl(var(--sand))",
-          dark: "hsl(var(--sand-dark))",
+        sky: {
+          DEFAULT: "hsl(var(--sky-blue))",
+          light: "hsl(var(--sky-light))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
+        starlight: {
+          DEFAULT: "hsl(var(--starlight))",
+          soft: "hsl(var(--starlight-soft))",
         },
-        cream: "hsl(var(--cream))",
+        moon: "hsl(var(--moon-silver))",
       },
       borderRadius: {
         lg: "var(--radius)",
