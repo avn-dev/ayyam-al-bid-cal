@@ -30,7 +30,7 @@ export function ExportPanel({ whiteDays }: ExportPanelProps) {
       <DialogTrigger asChild>
         <Button className="w-full gap-2 btn-primary-gradient hover:opacity-90 transition-opacity">
           <Download className="w-4 h-4" />
-          Alle exportieren
+          Exportieren
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-card">
