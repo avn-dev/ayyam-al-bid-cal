@@ -23,6 +23,12 @@ export function InfoSection() {
           Mond in diesen Nächten am hellsten scheint und die Nächte besonders hell erleuchtet.
         </p>
 
+        <div className="rounded-lg bg-blue-100/70 dark:bg-blue-900/20 border border-blue-200/70 dark:border-blue-800/60 text-blue-900 dark:text-blue-100 p-3 mb-4 text-sm">
+          Wichtig für die Praxis: Je nach lokaler Mondsichtung kann der Hijri-Monat um ±1 Tag früher oder später beginnen.
+          Wenn deine Gemeinde den Monat anders ausruft, verschiebe die weißen Tage in den Einstellungen um einen Tag nach vorn
+          oder hinten, damit du garantiert die richtigen Fastentage erwischst.
+        </div>
+
         <div className="rounded-lg bg-amber-100/80 dark:bg-amber-900/20 border border-amber-200/70 dark:border-amber-800/60 text-amber-900 dark:text-amber-100 p-3 mb-4 text-sm">
           Hinweis für Ramadan: Während des Fastenmonats wird ohnehin täglich gefastet. Die weißen Tage werden dann nicht
           zusätzlich als freiwilliges Fasten herausgestellt.
