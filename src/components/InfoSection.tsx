@@ -18,10 +18,15 @@ export function InfoSection() {
         </div>
         
         <p className="text-muted-foreground leading-relaxed mb-4">
-          Die <strong className="text-foreground">weißen Tage</strong> (arabisch: أيام البيض, Ayyam al-Bid) 
-          sind der 13., 14. und 15. Tag jedes islamischen Mondmonats. Sie werden so genannt, weil der 
+          Die <strong className="text-foreground">weißen Tage</strong> (arabisch: أيام البيض, Ayyam al-Bid)
+          sind der 13., 14. und 15. Tag jedes islamischen Mondmonats. Sie werden so genannt, weil der
           Mond in diesen Nächten am hellsten scheint und die Nächte besonders hell erleuchtet.
         </p>
+
+        <div className="rounded-lg bg-amber-100/80 dark:bg-amber-900/20 border border-amber-200/70 dark:border-amber-800/60 text-amber-900 dark:text-amber-100 p-3 mb-4 text-sm">
+          Hinweis für Ramadan: Während des Fastenmonats wird ohnehin täglich gefastet. Die weißen Tage werden dann nicht
+          zusätzlich als freiwilliges Fasten herausgestellt.
+        </div>
         
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="fasting" className="border-border/50">

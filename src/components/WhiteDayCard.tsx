@@ -8,17 +8,29 @@ interface WhiteDayCardProps {
 
 export function WhiteDayCard({ day, index, isNext = false }: WhiteDayCardProps) {
   return (
-    <div 
+    <div
       className={`card-elevated p-4 transition-all duration-300 hover:scale-[1.01] animate-slide-up opacity-0 ${
-        isNext ? 'ring-2 ring-primary/30 glow-sky' : ''
+        isNext || day.isToday ? 'ring-2 ring-primary/30 glow-sky' : ''
       }`}
       style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'forwards' }}
     >
-      {isNext && (
-        <span className="inline-block px-2.5 py-0.5 mb-2 text-xs font-medium rounded-full bg-primary/15 text-primary">
-          Nächster weißer Tag
-        </span>
-      )}
+      <div className="flex flex-wrap gap-2 mb-2">
+        {isNext && (
+          <span className="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-primary/15 text-primary">
+            Nächster weißer Tag
+          </span>
+        )}
+        {day.isToday && (
+          <span className="inline-block px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200">
+            Heute
+          </span>
+        )}
+        {day.isRamadan && (
+          <span className="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+            Ramadan
+          </span>
+        )}
+      </div>
       
       <div className="flex items-center justify-between gap-3">
         <div className="flex-1">
@@ -40,6 +52,19 @@ export function WhiteDayCard({ day, index, isNext = false }: WhiteDayCardProps) 
           <span className="text-[10px] text-muted-foreground">Hijri</span>
         </div>
       </div>
+
+      {(day.isToday || day.isRamadan) && (
+        <div className="mt-3 space-y-1 text-xs text-muted-foreground">
+          {day.isToday && (
+            <p className="text-foreground font-medium">Heute ist ein weißer Tag – perfekter Zeitpunkt zum Fasten.</p>
+          )}
+          {day.isRamadan && (
+            <p className="leading-relaxed">
+              Während des Ramadan wird ohnehin durchgehend gefastet. Die weißen Tage gelten daher nicht als zusätzliches Sunnah-Fasten.
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
