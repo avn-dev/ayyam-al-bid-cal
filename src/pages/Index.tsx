@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { getUpcomingWhiteDays } from '@/lib/hijri';
 import { getAutoDetectedTimezone } from '@/lib/timezones';
 import { Header } from '@/components/Header';
@@ -7,11 +7,12 @@ import { ExportPanel } from '@/components/ExportPanel';
 import { InfoSection } from '@/components/InfoSection';
 
 const Index = () => {
+  const [displayCount, setDisplayCount] = useState<3 | 6>(6);
   const timezone = getAutoDetectedTimezone();
-  
+
   const whiteDays = useMemo(() => {
-    return getUpcomingWhiteDays(12, timezone);
-  }, [timezone]);
+    return getUpcomingWhiteDays(displayCount, timezone);
+  }, [displayCount, timezone]);
 
   return (
     <div className="min-h-screen bg-background starry-bg">
@@ -25,17 +26,37 @@ const Index = () => {
         
         {/* White Days List */}
         <section>
-          <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2 animate-fade-in" style={{ animationDelay: '150ms' }}>
-            Kommende weiße Tage
-            <span className="text-sm font-normal text-muted-foreground">
-              ({whiteDays.length})
-            </span>
-          </h2>
-          
+          <div className="flex items-center justify-between gap-3 mb-3 animate-fade-in" style={{ animationDelay: '150ms' }}>
+            <h2 className="text-base font-semibold text-foreground flex items-center gap-2">
+              Kommende weiße Tage
+              <span className="text-sm font-normal text-muted-foreground">
+                ({whiteDays.length})
+              </span>
+            </h2>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span>Anzahl:</span>
+              <div className="flex rounded-lg overflow-hidden border border-border/60">
+                {[3, 6].map((count) => (
+                  <button
+                    key={count}
+                    onClick={() => setDisplayCount(count as 3 | 6)}
+                    className={`px-3 py-1 font-medium transition-colors ${
+                      displayCount === count
+                        ? 'bg-primary/15 text-primary'
+                        : 'bg-muted/30 hover:bg-muted/60'
+                    }`}
+                  >
+                    {count}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="grid gap-3">
             {whiteDays.map((day, index) => (
-              <WhiteDayCard 
-                key={day.gregorianDate.toISOString()} 
+              <WhiteDayCard
+                key={day.gregorianDate.toISOString()}
                 day={day} 
                 index={index}
                 isNext={index === 0}

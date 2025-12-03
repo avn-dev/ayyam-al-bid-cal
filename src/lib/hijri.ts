@@ -161,6 +161,7 @@ export function getWhiteDaysForMonth(hYear: number, hMonth: number): Date[] {
 export function getUpcomingWhiteDays(count: number = 12, timezone?: string): WhiteDay[] {
   const whiteDays: WhiteDay[] = [];
   const today = new Date();
+  const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   
   // Get current Hijri date
   const currentHijri = gregorianToHijri(today.getFullYear(), today.getMonth() + 1, today.getDate());
@@ -181,16 +182,20 @@ export function getUpcomingWhiteDays(count: number = 12, timezone?: string): Whi
     const monthWhiteDays = getWhiteDaysForMonth(hYear, hMonth);
     
     for (const date of monthWhiteDays) {
-      if (date >= today && whiteDays.length < count) {
+      const isAfterOrToday = date >= todayStart;
+
+      if (isAfterOrToday && whiteDays.length < count) {
         const hijri = gregorianToHijri(date.getFullYear(), date.getMonth() + 1, date.getDate());
-        
+
         whiteDays.push({
           gregorianDate: date,
           hijriDate: hijri,
           weekday: getWeekdayName(date),
           hijriLabel: formatHijriDate(hijri),
           gregorianLabel: formatGregorianDate(date),
-          timezoneId: timezone || Intl.DateTimeFormat().resolvedOptions().timeZone
+          timezoneId: timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+          isToday: date.toDateString() === todayStart.toDateString(),
+          isRamadan: hijri.month === 9
         });
       }
     }
@@ -212,4 +217,6 @@ export interface WhiteDay {
   hijriLabel: string;
   gregorianLabel: string;
   timezoneId: string;
+  isToday: boolean;
+  isRamadan: boolean;
 }
