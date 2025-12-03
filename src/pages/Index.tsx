@@ -15,8 +15,8 @@ const Index = () => {
   }, [timezone]);
 
   return (
-    <div className="min-h-screen bg-background islamic-pattern">
-      <div className="container max-w-2xl py-8 px-4">
+    <div className="min-h-screen bg-background starry-bg">
+      <div className="container max-w-2xl py-8 px-4 relative z-10">
         <Header />
         
         {/* Controls Section */}

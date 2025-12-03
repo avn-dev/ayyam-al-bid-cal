@@ -6,126 +6,129 @@
 
 @layer base {
   :root {
-    /* Islamic-inspired color palette: Emerald, Sand, Gold */
-    --background: 40 30% 97%;
-    --foreground: 30 20% 15%;
+    /* Night Sky Theme: Deep Blue, Silver, Starlight */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 40 25% 99%;
-    --card-foreground: 30 20% 15%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 40 25% 99%;
-    --popover-foreground: 30 20% 15%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
 
-    /* Primary: Islamic Emerald Green */
-    --primary: 158 64% 32%;
-    --primary-foreground: 40 30% 98%;
+    /* Primary: Deep Sky Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    /* Secondary: Warm Sand */
-    --secondary: 35 30% 90%;
-    --secondary-foreground: 30 20% 25%;
+    /* Secondary: Twilight Purple */
+    --secondary: 245 58% 51%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 35 20% 92%;
-    --muted-foreground: 30 15% 45%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    /* Accent: Desert Gold */
-    --accent: 38 70% 55%;
-    --accent-foreground: 30 20% 15%;
+    /* Accent: Starlight Gold */
+    --accent: 45 93% 58%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 25% 88%;
-    --input: 35 25% 88%;
-    --ring: 158 64% 32%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
-    /* Custom Islamic design tokens */
-    --emerald: 158 64% 32%;
-    --emerald-light: 158 50% 45%;
-    --emerald-dark: 158 70% 22%;
-    --sand: 35 30% 90%;
-    --sand-dark: 35 25% 80%;
-    --gold: 38 70% 55%;
-    --gold-light: 38 60% 70%;
-    --cream: 40 30% 97%;
+    /* Custom Night Sky design tokens */
+    --night-deep: 222 47% 11%;
+    --night-mid: 222 47% 18%;
+    --night-light: 222 40% 25%;
+    --sky-blue: 217 91% 60%;
+    --sky-light: 199 89% 70%;
+    --starlight: 45 93% 58%;
+    --starlight-soft: 45 70% 75%;
+    --moon-silver: 210 40% 90%;
     
     /* Gradients */
-    --gradient-emerald: linear-gradient(135deg, hsl(158 64% 32%), hsl(158 50% 45%));
-    --gradient-sand: linear-gradient(180deg, hsl(40 30% 97%), hsl(35 30% 92%));
-    --gradient-gold: linear-gradient(135deg, hsl(38 70% 55%), hsl(38 60% 65%));
-    --gradient-card: linear-gradient(145deg, hsl(40 25% 99%), hsl(35 30% 96%));
+    --gradient-night: linear-gradient(180deg, hsl(222 47% 11%), hsl(240 33% 18%));
+    --gradient-sky: linear-gradient(135deg, hsl(217 91% 60%), hsl(199 89% 70%));
+    --gradient-starlight: linear-gradient(135deg, hsl(45 93% 58%), hsl(45 70% 75%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 14%), hsl(222 40% 18%));
     
     /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(30 20% 15% / 0.08);
-    --shadow-elevated: 0 8px 30px -8px hsl(30 20% 15% / 0.12);
-    --shadow-glow: 0 0 40px hsl(158 64% 32% / 0.15);
+    --shadow-soft: 0 4px 20px -4px hsl(222 47% 5% / 0.4);
+    --shadow-elevated: 0 8px 30px -8px hsl(222 47% 5% / 0.6);
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.25);
+    --shadow-star: 0 0 20px hsl(45 93% 58% / 0.4);
 
-    --sidebar-background: 40 25% 98%;
-    --sidebar-foreground: 30 20% 25%;
-    --sidebar-primary: 158 64% 32%;
-    --sidebar-primary-foreground: 40 30% 98%;
-    --sidebar-accent: 35 30% 92%;
-    --sidebar-accent-foreground: 30 20% 25%;
-    --sidebar-border: 35 25% 88%;
-    --sidebar-ring: 158 64% 32%;
+    --sidebar-background: 222 47% 13%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 33% 20%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 217 33% 22%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    --background: 30 20% 8%;
-    --foreground: 40 20% 95%;
+    /* Dark mode uses the same night theme */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 30 18% 12%;
-    --card-foreground: 40 20% 95%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 30 18% 12%;
-    --popover-foreground: 40 20% 95%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 158 55% 45%;
-    --primary-foreground: 30 20% 8%;
+    --primary: 217 91% 65%;
+    --primary-foreground: 222 47% 8%;
 
-    --secondary: 30 15% 18%;
-    --secondary-foreground: 40 20% 90%;
+    --secondary: 245 58% 55%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 30 15% 18%;
-    --muted-foreground: 35 15% 60%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 20% 60%;
 
-    --accent: 38 60% 50%;
-    --accent-foreground: 30 20% 8%;
+    --accent: 45 93% 58%;
+    --accent-foreground: 222 47% 8%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 15% 20%;
-    --input: 30 15% 20%;
-    --ring: 158 55% 45%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 217 91% 65%;
 
-    --emerald: 158 55% 45%;
-    --emerald-light: 158 45% 55%;
-    --emerald-dark: 158 60% 35%;
-    --sand: 30 15% 18%;
-    --sand-dark: 30 12% 25%;
-    --gold: 38 60% 50%;
-    --gold-light: 38 50% 60%;
-    --cream: 30 20% 8%;
+    --night-deep: 222 47% 8%;
+    --night-mid: 222 47% 14%;
+    --night-light: 222 40% 22%;
+    --sky-blue: 217 91% 65%;
+    --sky-light: 199 89% 75%;
+    --starlight: 45 93% 58%;
+    --starlight-soft: 45 70% 75%;
+    --moon-silver: 210 40% 92%;
 
-    --gradient-emerald: linear-gradient(135deg, hsl(158 55% 45%), hsl(158 45% 55%));
-    --gradient-sand: linear-gradient(180deg, hsl(30 20% 8%), hsl(30 18% 12%));
-    --gradient-gold: linear-gradient(135deg, hsl(38 60% 50%), hsl(38 50% 60%));
-    --gradient-card: linear-gradient(145deg, hsl(30 18% 12%), hsl(30 15% 15%));
+    --gradient-night: linear-gradient(180deg, hsl(222 47% 8%), hsl(240 33% 14%));
+    --gradient-sky: linear-gradient(135deg, hsl(217 91% 65%), hsl(199 89% 75%));
+    --gradient-starlight: linear-gradient(135deg, hsl(45 93% 58%), hsl(45 70% 75%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 11%), hsl(222 40% 15%));
 
-    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
-    --shadow-elevated: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 40px hsl(158 55% 45% / 0.2);
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.5);
+    --shadow-elevated: 0 8px 30px -8px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 40px hsl(217 91% 65% / 0.3);
+    --shadow-star: 0 0 20px hsl(45 93% 58% / 0.5);
 
-    --sidebar-background: 30 18% 10%;
-    --sidebar-foreground: 40 20% 90%;
-    --sidebar-primary: 158 55% 45%;
-    --sidebar-primary-foreground: 30 20% 8%;
-    --sidebar-accent: 30 15% 18%;
-    --sidebar-accent-foreground: 40 20% 90%;
-    --sidebar-border: 30 15% 20%;
-    --sidebar-ring: 158 55% 45%;
+    --sidebar-background: 222 47% 10%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 217 91% 65%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 217 91% 65%;
   }
 }
 
@@ -145,18 +148,32 @@
 }
 
 @layer components {
-  .islamic-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23158a5e' fill-opacity='0.04'%3E%3Cpath d='M30 30l15-15v30l-15-15zm-15 0l15-15v30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  .starry-bg {
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(45 93% 80%), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(210 40% 90%), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(45 93% 75%), transparent),
+      radial-gradient(2px 2px at 160px 120px, hsl(210 40% 85%), transparent),
+      radial-gradient(1px 1px at 230px 80px, hsl(45 93% 80%), transparent),
+      radial-gradient(2px 2px at 300px 150px, hsl(210 40% 90%), transparent),
+      radial-gradient(1px 1px at 370px 60px, hsl(45 93% 75%), transparent),
+      radial-gradient(2px 2px at 440px 130px, hsl(210 40% 85%), transparent),
+      radial-gradient(1px 1px at 510px 90px, hsl(45 93% 80%), transparent),
+      radial-gradient(2px 2px at 580px 170px, hsl(210 40% 90%), transparent),
+      radial-gradient(1px 1px at 650px 50px, hsl(45 93% 75%), transparent),
+      radial-gradient(2px 2px at 720px 110px, hsl(210 40% 85%), transparent);
+    background-size: 800px 200px;
+    background-repeat: repeat;
   }
   
-  .text-gradient-gold {
+  .text-gradient-starlight {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-gold);
+    background-image: var(--gradient-starlight);
   }
   
-  .text-gradient-emerald {
+  .text-gradient-sky {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-emerald);
+    background-image: var(--gradient-sky);
   }
   
   .card-elevated {
@@ -170,12 +187,16 @@
   }
   
   .btn-primary-gradient {
-    background-image: var(--gradient-emerald);
+    background-image: var(--gradient-sky);
     @apply text-primary-foreground;
   }
   
-  .glow-emerald {
+  .glow-sky {
     box-shadow: var(--shadow-glow);
+  }
+  
+  .glow-star {
+    box-shadow: var(--shadow-star);
   }
 }
 
