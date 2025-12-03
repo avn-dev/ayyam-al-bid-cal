@@ -18,7 +18,7 @@ const Index = () => {
     <div className="min-h-screen bg-background starry-bg">
       <div className="container max-w-xl py-6 px-4 relative z-10">
         <Header />
-        
+
         {/* Export Button */}
         <div className="flex justify-center mb-6 animate-slide-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
           <ExportPanel whiteDays={whiteDays} />
@@ -33,23 +33,26 @@ const Index = () => {
                 ({whiteDays.length})
               </span>
             </h2>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>Anzahl:</span>
-              <div className="flex rounded-lg overflow-hidden border border-border/60">
-                {[3, 6].map((count) => (
-                  <button
-                    key={count}
-                    onClick={() => setDisplayCount(count as 3 | 6)}
-                    className={`px-3 py-1 font-medium transition-colors ${
-                      displayCount === count
-                        ? 'bg-primary/15 text-primary'
-                        : 'bg-muted/30 hover:bg-muted/60'
-                    }`}
-                  >
-                    {count}
-                  </button>
-                ))}
+            <div className="flex flex-col items-end gap-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span>Anzahl:</span>
+                <div className="flex rounded-lg overflow-hidden border border-border/60">
+                  {[3, 6].map((count) => (
+                    <button
+                      key={count}
+                      onClick={() => setDisplayCount(count as 3 | 6)}
+                      className={`px-3 py-1 font-medium transition-colors ${
+                        displayCount === count
+                          ? 'bg-primary/15 text-primary'
+                          : 'bg-muted/30 hover:bg-muted/60'
+                      }`}
+                    >
+                      {count}
+                    </button>
+                  ))}
+                </div>
               </div>
+
             </div>
           </div>
 

@@ -19,7 +19,6 @@ X-WR-TIMEZONE:UTC
     const nextDay = new Date(day.gregorianDate);
     nextDay.setDate(nextDay.getDate() + 1);
     const nextDateStr = formatDateOnlyToICS(nextDay);
-    
     ics += `BEGIN:VEVENT
 UID:whitday-${dateStr}-${index}@weissetage.app
 DTSTAMP:${timestamp}

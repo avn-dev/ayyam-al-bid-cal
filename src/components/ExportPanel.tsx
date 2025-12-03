@@ -14,7 +14,6 @@ import {
 interface ExportPanelProps {
   whiteDays: WhiteDay[];
 }
-
 export function ExportPanel({ whiteDays }: ExportPanelProps) {
   const handleExportYear = () => {
     const timezone = whiteDays[0]?.timezoneId;
@@ -47,16 +46,16 @@ export function ExportPanel({ whiteDays }: ExportPanelProps) {
         <div className="grid gap-4 py-4">
           {/* ICS Downloads */}
           <div className="space-y-3">
-            <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              ICS-Datei herunterladen
-            </h4>
-            <p className="text-xs text-muted-foreground">
-              Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)
-            </p>
-            <div className="flex gap-2">
-              <Button 
-                variant="outline" 
+          <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            ICS-Datei herunterladen
+          </h4>
+          <div className="space-y-1 text-xs text-muted-foreground">
+            <p>Funktioniert mit allen Kalender-Apps (iOS, Android, Windows, macOS)</p>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
                 size="sm" 
                 onClick={handleExportYear}
                 className="flex-1 gap-2"
