@@ -24,9 +24,8 @@ export function InfoSection() {
         </p>
 
         <div className="rounded-lg bg-blue-100/70 dark:bg-blue-900/20 border border-blue-200/70 dark:border-blue-800/60 text-blue-900 dark:text-blue-100 p-3 mb-4 text-sm">
-          Wichtig für die Praxis: Je nach lokaler Mondsichtung kann der Hijri-Monat um ±1 Tag früher oder später beginnen.
-          Wenn deine Gemeinde den Monat anders ausruft, verschiebe die weißen Tage in den Einstellungen um einen Tag nach vorn
-          oder hinten, damit du garantiert die richtigen Fastentage erwischst.
+          Die weißen Tage sind immer der 13., 14. und 15. eines jeden Hijri-Monats. Falls deine lokale Gemeinde den Monatsbeginn
+          abweichend verkündet, orientiere dich an dieser Ansage – die drei Tage selbst bleiben unverändert.
         </div>
 
         <div className="rounded-lg bg-amber-100/80 dark:bg-amber-900/20 border border-amber-200/70 dark:border-amber-800/60 text-amber-900 dark:text-amber-100 p-3 mb-4 text-sm">

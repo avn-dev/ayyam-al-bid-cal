@@ -54,32 +54,6 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span>Lokale Anpassung:</span>
-                <div className="flex rounded-lg overflow-hidden border border-border/60">
-                  {[
-                    { label: '-1 Tag', value: -1 as -1 | 0 | 1 },
-                    { label: 'Standard', value: 0 as -1 | 0 | 1 },
-                    { label: '+1 Tag', value: 1 as -1 | 0 | 1 }
-                  ].map(({ label, value }) => (
-                    <button
-                      key={label}
-                      onClick={() => setOffsetDays(value)}
-                      className={`px-3 py-1 font-medium transition-colors ${
-                        offsetDays === value
-                          ? 'bg-primary/15 text-primary'
-                          : 'bg-muted/30 hover:bg-muted/60'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <p className="text-[11px] text-right text-muted-foreground max-w-sm">
-                Falls der lokale Hijri-Monat einen Tag früher oder später beginnt, kannst du die weißen Tage hier um
-                ±1 Tag verschieben, damit sie sicher mit der Mondsichtung übereinstimmen.
-              </p>
             </div>
           </div>
 

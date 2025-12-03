@@ -160,8 +160,7 @@ export function getWhiteDaysForMonth(hYear: number, hMonth: number): Date[] {
 // Get upcoming white days from today
 export function getUpcomingWhiteDays(
   count: number = 12,
-  timezone?: string,
-  offsetDays: -1 | 0 | 1 = 0
+  timezone?: string
 ): WhiteDay[] {
   const whiteDays: WhiteDay[] = [];
   const today = new Date();
@@ -193,9 +192,9 @@ export function getUpcomingWhiteDays(
 
       if (isAfterOrToday && whiteDays.length < count) {
         const hijri = gregorianToHijri(
-          adjustedDate.getFullYear(),
-          adjustedDate.getMonth() + 1,
-          adjustedDate.getDate()
+          date.getFullYear(),
+          date.getMonth() + 1,
+          date.getDate()
         );
 
         whiteDays.push({

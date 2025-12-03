@@ -19,11 +19,6 @@ X-WR-TIMEZONE:UTC
     const nextDay = new Date(day.gregorianDate);
     nextDay.setDate(nextDay.getDate() + 1);
     const nextDateStr = formatDateOnlyToICS(nextDay);
-    const adjustmentNote =
-      day.offsetDays === 0
-        ? ''
-        : `\\n\\nLokale Anpassung: ${day.offsetDays > 0 ? '+1 Tag' : '-1 Tag'} gegenüber Umm al-Qura.`;
-
     ics += `BEGIN:VEVENT
 UID:whitday-${dateStr}-${index}@weissetage.app
 DTSTAMP:${timestamp}
