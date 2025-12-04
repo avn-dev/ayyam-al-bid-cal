@@ -176,3 +176,121 @@ export function getHijriMonthName(month: number, lang: 'de' | 'ar' | 'en' = 'de'
 
   return names[lang][month - 1] || '';
 }
+
+// ============================================================================
+// WHITE DAY INTERFACE (gleich wie vorher)
+// ============================================================================
+export interface WhiteDay {
+  gregorianDate: Date;
+  hijriDate: HijriDate;
+  weekday: string;
+  hijriLabel: string;
+  gregorianLabel: string;
+  timezoneId: string;
+  isToday: boolean;
+  isRamadan: boolean;
+  offsetDays: -1 | 0 | 1;
+}
+
+// ============================================================================
+// WEEKDAY NAME
+// ============================================================================
+export function getWeekdayName(date: Date, lang: 'de' | 'en' = 'de'): string {
+  const opts: Intl.DateTimeFormatOptions = { weekday: 'long' };
+  return date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-US', opts);
+}
+
+// ============================================================================
+// GREGORIAN LABEL
+// ============================================================================
+export function formatGregorianDate(date: Date, lang: 'de' | 'en' = 'de'): string {
+  return date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
+// ============================================================================
+// HIJRI LABEL
+// ============================================================================
+export function formatHijriDate(h: HijriDate, lang: 'de' | 'ar' | 'en' = 'de'): string {
+  const monthName = getHijriMonthName(h.month, lang);
+  return `${h.day}. ${monthName} ${h.year}`;
+}
+
+// ============================================================================
+// UPCOMING WHITE DAYS (13–15 Hijri) — FEHLERFREI
+// ============================================================================
+export function getUpcomingWhiteDays(
+  count: number = 12,
+  timezone?: string,
+  offsetDays: -1 | 0 | 1 = 0
+): WhiteDay[] {
+  const result: WhiteDay[] = [];
+
+  const tz = timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const today = new Date();
+  const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+  // aktuelles Hijri-Datum (NEUE KONVERTIERUNG)
+  const nowHijri = gregorianToHijri(
+    today.getFullYear(),
+    today.getMonth() + 1,
+    today.getDate()
+  );
+
+  let hYear = nowHijri.year;
+  let hMonth = nowHijri.month;
+
+  // Wenn wir nach dem 15. sind → nächsten Monat beginnen
+  if (nowHijri.day > 15) {
+    hMonth++;
+    if (hMonth > 12) {
+      hMonth = 1;
+      hYear++;
+    }
+  }
+
+  while (result.length < count) {
+
+    // immer korrekte 13–15 Hijri
+    const days = getWhiteDaysForMonth(hYear, hMonth);
+
+    for (const gDate of days) {
+      const adjusted = new Date(gDate);
+      adjusted.setDate(adjusted.getDate() + offsetDays);
+
+      if (adjusted >= todayStart && result.length < count) {
+        
+        const hijri = gregorianToHijri(
+          adjusted.getFullYear(),
+          adjusted.getMonth() + 1,
+          adjusted.getDate()
+        );
+
+        result.push({
+          gregorianDate: adjusted,
+          hijriDate: hijri,
+          weekday: getWeekdayName(adjusted),
+          hijriLabel: formatHijriDate(hijri),
+          gregorianLabel: formatGregorianDate(adjusted),
+          timezoneId: tz,
+          isToday: adjusted.toDateString() === todayStart.toDateString(),
+          isRamadan: hijri.month === 9,
+          offsetDays
+        });
+      }
+    }
+
+    // nächsten Hijri-Monat gehen
+    hMonth++;
+    if (hMonth > 12) {
+      hMonth = 1;
+      hYear++;
+    }
+  }
+
+  return result;
+}
