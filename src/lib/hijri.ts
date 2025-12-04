@@ -43,7 +43,13 @@ function gregorianToJD(year: number, month: number, day: number): number {
 // JULIAN DAY → GREGORIAN
 // ============================================================================
 function jdToGregorian(jd: number): GregorianDate {
-  const a = jd + 32044;
+  // Julian days beginnen mittags – durch das Aufrunden auf den nächsten
+  // ganzen Tag (jd + 0,5) werden Off-by-One-Fehler beim Hin- und
+  // Herkonvertieren vermieden. Ohne diesen Schritt landen die weißen Tage
+  // fälschlicherweise bei 12–14 statt 13–15 Hijri.
+  const wjd = Math.floor(jd + 0.5);
+
+  const a = wjd + 32044;
   const b = Math.floor((4 * a + 3) / 146097);
   const c = a - Math.floor((146097 * b) / 4);
   const d = Math.floor((4 * c + 3) / 1461);
@@ -98,10 +104,10 @@ function hijriToJD(year: number, month: number, day: number): number {
 // JULIAN DAY → HIJRI
 // ============================================================================
 function jdToHijri(jd: number): HijriDate {
-  let days = Math.floor(jd - HIJRI_EPOCH);
+  const days = Math.floor(jd - HIJRI_EPOCH);
 
   // Jahr berechnen
-  let year = Math.floor((30 * days + 10646) / 10631);
+  const year = Math.floor((30 * days + 10646) / 10631);
 
   // Tag im Jahr bestimmen
   let dayOfYear =
