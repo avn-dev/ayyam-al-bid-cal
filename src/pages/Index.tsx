@@ -12,7 +12,7 @@ const Index = () => {
   const timezone = getAutoDetectedTimezone();
 
   const whiteDays = useMemo(() => {
-    return getUpcomingWhiteDays(displayCount, timezone, offsetDays);
+    return getUpcomingWhiteDays(displayCount, timezone, 0);
   }, [displayCount, timezone, offsetDays]);
 
   return (
